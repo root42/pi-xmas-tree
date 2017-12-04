@@ -4,8 +4,6 @@ import json
 import tornado.ioloop
 import tornado.web
 
-tree = [ { "index" : i, "value" : 0.0 } for i in range(0, 26) ]
-
 class JsonHandler( tornado.web.RequestHandler ):
     """Request handler where requests and responses speak JSON."""
     def prepare(self):
@@ -56,18 +54,27 @@ class MainHandler(tornado.web.RequestHandler):
 
 class LedHandler( JsonHandler ):
 
+    tree = [ { "index" : i, "value" : 0.0 } for i in range(0, 26) ]
+
+    def initialize( self ):
+        print "leds: %i" % len( LedHandler.tree )
+
     def get( self, ledIndex=None ):
         if ledIndex == None or len( ledIndex ) == 0:
-            self.response[ 'leds' ] = tree
+            self.response[ 'leds' ] = LedHandler.tree
         else:
-            led = tree[ int( ledIndex ) ]
+            led = LedHandler.tree[ int( ledIndex ) ]
             self.response = led
         self.write_json()
 
     def put( self, ledIndex ):
-        led = tree[ int( ledIndex ) ]
-        led[ "value" ] = float( self.request.arguments[ 'value' ] )
-        self.response[ 'value' ] = str( led[ "value" ] )
+        if ledIndex == None or len( ledIndex ) == 0:
+            LedHandler.tree = self.request.arguments[ 'leds' ]
+            self.response[ 'leds' ] = LedHandler.tree
+        else:
+            led = LedHandler.tree[ int( ledIndex ) ]
+            led[ "value" ] = float( self.request.arguments[ 'value' ] )
+            self.response[ 'value' ] = str( led[ "value" ] )
         self.write_json()
         
 def make_app():
@@ -77,7 +84,6 @@ def make_app():
     ])
 
 if __name__ == "__main__":
-    print "leds: %i" % len(tree)
     app = make_app()
     app.listen(8888)
     tornado.ioloop.IOLoop.current().start()
