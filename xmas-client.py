@@ -11,7 +11,7 @@ import tornado.web
 tree = LEDBoard( *range(2,28), pwm=True )
 old_tree = [ 0.0 for i in range( 0, 26 ) ]
 
-url = "http://HOSTNAME:8888/led/" # change this to your host which serves the backend
+url = "http://localhost:8888/led/" # change this to your host which serves the backend
 
 def getLedStatus():
     http_client = tornado.httpclient.HTTPClient()
@@ -36,5 +36,5 @@ def getLedStatus():
 
 if __name__ == "__main__":
     print "leds: %i" % len(tree)
-    tornado.ioloop.PeriodicCallback( getLedStatus, 100 ).start()
+    tornado.ioloop.PeriodicCallback( getLedStatus, 500 ).start()
     tornado.ioloop.IOLoop.instance().start()
