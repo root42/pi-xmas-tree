@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import sys
 import json
 import tornado.ioloop
 import tornado.web
@@ -84,6 +85,9 @@ def make_app():
     ])
 
 if __name__ == "__main__":
+    port = 8888
+    if len( sys.argv ) > 1:
+        port = int( sys.argv[ 1 ] )
     app = make_app()
-    app.listen(8888)
+    app.listen( port )
     tornado.ioloop.IOLoop.current().start()
