@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import sys
 from gpiozero import LEDBoard, PWMLED
 from gpiozero.tools import random_values
 from signal import pause
@@ -35,6 +36,8 @@ def getLedStatus():
     http_client.close()
 
 if __name__ == "__main__":
+    if len( sys.argv ) > 1:
+        url = sys.argv[ 1 ]
     print "leds: %i" % len(tree)
     tornado.ioloop.PeriodicCallback( getLedStatus, 500 ).start()
     tornado.ioloop.IOLoop.instance().start()
