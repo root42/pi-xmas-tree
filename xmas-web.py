@@ -50,8 +50,16 @@ class JsonHandler( tornado.web.RequestHandler ):
         self.write(output)
 
 class MainHandler(tornado.web.RequestHandler):
-    def get(self):
-        self.write( "Hello, world" )
+    def get( self, filename ):
+        if len( filename ) == 0:
+            filename = "index.html"
+        if filename == "index.html" or filename == "xmas.js":
+            with open( filename, "r" ) as indexFile:
+                map( self.write, indexFile )
+        else:
+            self.write( "404 - file not found: %s" % filename )
+            self.set_status(404)
+            self.finish()
 
 class LedHandler( JsonHandler ):
 
@@ -80,8 +88,8 @@ class LedHandler( JsonHandler ):
         
 def make_app():
     return tornado.web.Application([
-        (r"/", MainHandler),
-        (r"/led/(.*)", LedHandler)
+        (r"/led/(.*)", LedHandler),
+        (r"/(.*)", MainHandler)
     ])
 
 if __name__ == "__main__":
