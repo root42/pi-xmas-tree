@@ -53,7 +53,7 @@ class MainHandler(tornado.web.RequestHandler):
     def get( self, filename ):
         if len( filename ) == 0:
             filename = "index.html"
-        if filename == "index.html" or filename == "xmas.js":
+        if filename == "index.html" or filename == "xmas.js" or filename == "xmas.css":
             with open( filename, "r" ) as indexFile:
                 map( self.write, indexFile )
         else:

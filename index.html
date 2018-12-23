@@ -1,42 +1,80 @@
+<!doctype html>
 <html>
    <head>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
       <title>Raspberry Pi Xmas Tree</title>
    </head>
    <body>
-      <div id="leds">
-         <input type="checkbox" id="led-0"/><label for="led-0">(*)</label><br/>
-         <input type="checkbox" id="led-1" hidden/><label for="led-1" hidden>2</label><br hidden/>
-         <input type="checkbox" id="led-2"/><label for="led-2">1</label><br/>
-         <input type="checkbox" id="led-3"/><label for="led-3">7</label><br/>
-         <input type="checkbox" id="led-4"/><label for="led-4">16</label><br/>
-         <input type="checkbox" id="led-5"/><label for="led-5">22</label><br/>
-         <input type="checkbox" id="led-6"/><label for="led-6">6</label><br/>
-         <input type="checkbox" id="led-7"/><label for="led-7">14</label><br/>
-         <input type="checkbox" id="led-8"/><label for="led-8">8</label><br/>
-         <input type="checkbox" id="led-9"/><label for="led-9">21</label><br/>
-         <input type="checkbox" id="led-10"/><label for="led-10">15</label><br/>
-         <input type="checkbox" id="led-11"/><label for="led-11">3</label><br/>
-         <input type="checkbox" id="led-12"/><label for="led-12">19</label><br/>
-         <input type="checkbox" id="led-13"/><label for="led-13">2</label><br/>
-         <input type="checkbox" id="led-14"/><label for="led-14">9</label><br/>
-         <input type="checkbox" id="led-15"/><label for="led-15">10</label><br/>
-         <input type="checkbox" id="led-16"/><label for="led-16">20</label><br/>
-         <input type="checkbox" id="led-17"/><label for="led-17">18</label><br/>
-         <input type="checkbox" id="led-18"/><label for="led-18">17</label><br/>
-         <input type="checkbox" id="led-19"/><label for="led-19">4</label><br/>
-         <input type="checkbox" id="led-20"/><label for="led-20">24</label><br/>
-         <input type="checkbox" id="led-21"/><label for="led-21">23</label><br/>
-         <input type="checkbox" id="led-22"/><label for="led-22">13</label><br/>
-         <input type="checkbox" id="led-23"/><label for="led-23">5</label><br/>
-         <input type="checkbox" id="led-24"/><label for="led-24">12</label><br/>
-         <input type="checkbox" id="led-25"/><label for="led-25">11</label><br/>
-      </div>
-      <div id="buttons">
-         <button onclick="getLEDStatus()">Get</button>
-         <button onclick="setLEDStatus()">Set</button>
-      </div>
       <script src="xmas.js"></script>
-      <script>getLEDStatus();</script>
+      <div class="container">
+         <h1>The Raspberry Pi Xmas Tree</h1>
+         <div>
+            Note that there is a significant delay in the video stream. So setting of the LEDs is not instantaneous!
+         </div>
+         <div class="row">
+            <div class="col-sm">
+               <div id="leds-1" class="form-check">
+                  <input class="form-check-input" type="checkbox" id="led-1" hidden/><label for="led-1" hidden>2</label><br hidden/>
+                  <input class="form-check-input" type="checkbox" id="led-0"/><label for="led-0">(*)</label><br/>
+                  <input class="form-check-input" type="checkbox" id="led-2"/><label for="led-2">1</label><br/>
+                  <input class="form-check-input" type="checkbox" id="led-3"/><label for="led-3">7</label><br/>
+                  <input class="form-check-input" type="checkbox" id="led-4"/><label for="led-4">16</label><br/>
+                  <input class="form-check-input" type="checkbox" id="led-5"/><label for="led-5">22</label><br/>
+                  <input class="form-check-input" type="checkbox" id="led-6"/><label for="led-6">6</label><br/>
+                  <input class="form-check-input" type="checkbox" id="led-7"/><label for="led-7">14</label><br/>
+                  <input class="form-check-input" type="checkbox" id="led-8"/><label for="led-8">8</label><br/>
+                  <input class="form-check-input" type="checkbox" id="led-9"/><label for="led-9">21</label><br/>
+                  <input class="form-check-input" type="checkbox" id="led-10"/><label for="led-10">15</label><br/>
+                  <input class="form-check-input" type="checkbox" id="led-11"/><label for="led-11">3</label><br/>
+                  <input class="form-check-input" type="checkbox" id="led-12"/><label for="led-12">19</label><br/>
+               </div>
+            </div>
+            <div class="col-sm">
+               <div id="leds-2" class="form-check">
+                  <input class="form-check-input" type="checkbox" id="led-13"/><label for="led-13">2</label><br/>
+                  <input class="form-check-input" type="checkbox" id="led-14"/><label for="led-14">9</label><br/>
+                  <input class="form-check-input" type="checkbox" id="led-15"/><label for="led-15">10</label><br/>
+                  <input class="form-check-input" type="checkbox" id="led-16"/><label for="led-16">20</label><br/>
+                  <input class="form-check-input" type="checkbox" id="led-17"/><label for="led-17">18</label><br/>
+                  <input class="form-check-input" type="checkbox" id="led-18"/><label for="led-18">17</label><br/>
+                  <input class="form-check-input" type="checkbox" id="led-19"/><label for="led-19">4</label><br/>
+                  <input class="form-check-input" type="checkbox" id="led-20"/><label for="led-20">24</label><br/>
+                  <input class="form-check-input" type="checkbox" id="led-21"/><label for="led-21">23</label><br/>
+                  <input class="form-check-input" type="checkbox" id="led-22"/><label for="led-22">13</label><br/>
+                  <input class="form-check-input" type="checkbox" id="led-23"/><label for="led-23">5</label><br/>
+                  <input class="form-check-input" type="checkbox" id="led-24"/><label for="led-24">12</label><br/>
+                  <input class="form-check-input" type="checkbox" id="led-25"/><label for="led-25">11</label><br/>
+               </div>
+            </div>
+            <script>getLEDStatus();</script>
+         </div>
+         <div class="row">
+            <div class="col-sm">
+               <div id="buttons">
+                  <button class="btn btn-primary" onclick="getLEDStatus()">Get LEDs</button>
+               </div>
+            </div>
+            <div class="col-sm">
+               <div id="buttons">
+                  <button class="btn btn-primary" onclick="setLEDStatus()">Set LEDs</button>
+               </div>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-sm mt-5" id="twitch-iframe">
+               <iframe src="https://player.twitch.tv/?channel=root_42" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620">
+            </div>
+         </div>
+      </div>
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
    </body>
 </html>
-
