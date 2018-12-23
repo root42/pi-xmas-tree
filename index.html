@@ -12,7 +12,12 @@
       <title>Raspberry Pi Xmas Tree</title>
    </head>
    <body>
-      <div class="container-fluid">
+      <script src="xmas.js"></script>
+      <div class="container">
+         <h1>The Raspberry Pi Xmas Tree</h1>
+         <div>
+            Note that there is a significant delay in the video stream. So setting of the LEDs is not instantaneous!
+         </div>
          <div class="row">
             <div class="col-sm">
                <div id="leds-1" class="form-check">
@@ -29,9 +34,6 @@
                   <input class="form-check-input" type="checkbox" id="led-10"/><label for="led-10">15</label><br/>
                   <input class="form-check-input" type="checkbox" id="led-11"/><label for="led-11">3</label><br/>
                   <input class="form-check-input" type="checkbox" id="led-12"/><label for="led-12">19</label><br/>
-               </div>
-               <div id="buttons">
-                  <button class="btn btn-primary" onclick="getLEDStatus()">Get LEDs</button>
                </div>
             </div>
             <div class="col-sm">
@@ -50,17 +52,27 @@
                   <input class="form-check-input" type="checkbox" id="led-24"/><label for="led-24">12</label><br/>
                   <input class="form-check-input" type="checkbox" id="led-25"/><label for="led-25">11</label><br/>
                </div>
+            </div>
+            <script>getLEDStatus();</script>
+         </div>
+         <div class="row">
+            <div class="col-sm">
+               <div id="buttons">
+                  <button class="btn btn-primary" onclick="getLEDStatus()">Get LEDs</button>
+               </div>
+            </div>
+            <div class="col-sm">
                <div id="buttons">
                   <button class="btn btn-primary" onclick="setLEDStatus()">Set LEDs</button>
                </div>
             </div>
+         </div>
+         <div class="row">
             <div class="col-sm">
                <iframe src="https://player.twitch.tv/?channel=root_42" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620">
             </div>
          </div>
       </div>
-      <script src="xmas.js"></script>
-      <script>getLEDStatus();</script>
       <!-- jQuery first, then Popper.js, then Bootstrap JS -->
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
