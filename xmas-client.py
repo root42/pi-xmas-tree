@@ -20,7 +20,7 @@ old_tree = [ 0.0 for i in range( 0, 26 ) ]
 url = "http://localhost:8888/led/" # change this to your host which serves the backend
 
 def getLedStatus():
-    http_client = tornado.httpclient.HTTPClient()
+    http_client = tornado.httpclient.AsyncHTTPClient()
     try:
         response = http_client.fetch( url )
         json_data = json.loads( response.body )
@@ -44,5 +44,6 @@ if __name__ == "__main__":
     if len( sys.argv ) > 1:
         url = sys.argv[ 1 ]
     print("leds: %i" % len(tree))
-    tornado.ioloop.PeriodicCallback( getLedStatus, 500 ).start()
-    tornado.ioloop.IOLoop.instance().start()
+    callback = tornado.ioloop.PeriodicCallback( getLedStatus, 500 )
+    callback.start()
+    tornado.ioloop.IOLoop.current().start()
