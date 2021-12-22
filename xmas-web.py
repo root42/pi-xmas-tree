@@ -11,7 +11,7 @@ class JsonHandler( tornado.web.RequestHandler ):
         # Incorporate request JSON into arguments dictionary.
         if self.request.body:
             try:
-                print "Request: %s " % self.request.body
+                print("Request: %s " % self.request.body)
                 json_data = json.loads(self.request.body)
                 self.request.arguments.update(json_data)
             except ValueError:
@@ -46,7 +46,7 @@ class JsonHandler( tornado.web.RequestHandler ):
     def write_json(self):
         # print "Response: %s" % self.response
         output = json.dumps(self.response)
-        print "Response: %s" % output
+        print("Response: %s" % output)
         self.write(output)
 
 class MainHandler(tornado.web.RequestHandler):
@@ -55,7 +55,7 @@ class MainHandler(tornado.web.RequestHandler):
             filename = "index.html"
         if filename == "index.html" or filename == "xmas.js" or filename == "xmas.css":
             with open( filename, "r" ) as indexFile:
-                map( self.write, indexFile )
+                list(map( self.write, indexFile ))
         else:
             self.write( "404 - file not found: %s" % filename )
             self.set_status(404)
@@ -66,7 +66,7 @@ class LedHandler( JsonHandler ):
     tree = [ { "index" : i, "value" : 0.0 } for i in range(0, 26) ]
 
     def initialize( self ):
-        print "leds: %i" % len( LedHandler.tree )
+        print("leds: %i" % len( LedHandler.tree ))
 
     def get( self, ledIndex=None ):
         if ledIndex == None or len( ledIndex ) == 0:
