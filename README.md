@@ -20,7 +20,7 @@ The Raspberry Pi(s) needs the following packages:
 
 * gpiozero
 * python-tornado
-* av-tools
+* ffmpeg
 
 Tornado is the web framework used by the two programs:
 
