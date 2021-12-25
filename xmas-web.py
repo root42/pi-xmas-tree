@@ -59,12 +59,15 @@ class MainHandler(tornado.web.RequestHandler):
         if len( filename ) == 0:
             filename = "index.html"
         if filename == "index.html" or filename == "xmas.js" or filename == "xmas.css":
+            print(ts() + "GET " + filename)
             with open( filename, "r" ) as indexFile:
-                map( self.write, indexFile )
+                content = indexFile.readlines()
+                for line in content:
+                    self.write( line )
         else:
             self.write( "404 - file not found: %s" % filename )
             self.set_status(404)
-            self.finish()
+        self.finish()
 
 class LedHandler( JsonHandler ):
 
