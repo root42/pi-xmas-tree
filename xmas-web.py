@@ -4,6 +4,11 @@ import sys
 import json
 import tornado.ioloop
 import tornado.web
+import datetime
+
+def ts():
+    st = str(datetime.datetime.utcnow())
+    return "[%s] " % st
 
 class JsonHandler( tornado.web.RequestHandler ):
     """Request handler where requests and responses speak JSON."""
@@ -11,11 +16,12 @@ class JsonHandler( tornado.web.RequestHandler ):
         # Incorporate request JSON into arguments dictionary.
         if self.request.body:
             try:
-                print "Request: %s " % self.request.body
+                print(ts() + "Request: %s " % self.request.body)
                 json_data = json.loads(self.request.body)
                 self.request.arguments.update(json_data)
             except ValueError:
                 message = 'Unable to parse JSON.'
+                print(ts() + message)
                 self.send_error(400, message=message) # Bad Request
 
         # Set up response dictionary.
@@ -44,9 +50,8 @@ class JsonHandler( tornado.web.RequestHandler ):
         self.write_json()
 
     def write_json(self):
-        # print "Response: %s" % self.response
         output = json.dumps(self.response)
-        print "Response: %s" % output
+        print(ts() + "Response: %s" % output)
         self.write(output)
 
 class MainHandler(tornado.web.RequestHandler):
@@ -66,7 +71,7 @@ class LedHandler( JsonHandler ):
     tree = [ { "index" : i, "value" : 0.0 } for i in range(0, 26) ]
 
     def initialize( self ):
-        print "leds: %i" % len( LedHandler.tree )
+        print(ts() + "leds: %i" % len( LedHandler.tree ))
 
     def get( self, ledIndex=None ):
         if ledIndex == None or len( ledIndex ) == 0:
