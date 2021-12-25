@@ -17,7 +17,7 @@ class JsonHandler( tornado.web.RequestHandler ):
         if self.request.body:
             try:
                 print(ts() + "Request: %s " % self.request.body)
-                json_data = json.loads(self.request.body)
+                json_data = json.loads(self.request.body.decode('utf-8'))
                 self.request.arguments.update(json_data)
             except ValueError:
                 message = 'Unable to parse JSON.'
